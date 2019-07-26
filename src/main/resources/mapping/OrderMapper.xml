@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="yuan.paycard.dao.OrderMapper">
+  <resultMap id="BaseResultMap" type="yuan.paycard.model.Order">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="item_id" jdbcType="VARCHAR" property="itemId" />
+    <result column="payer_id" jdbcType="BIGINT" property="payerId" />
+    <result column="actual_payer_id" jdbcType="BIGINT" property="actualPayerId" />
+    <result column="seller_id" jdbcType="BIGINT" property="sellerId" />
+    <result column="payment" jdbcType="DOUBLE" property="payment" />
+    <result column="payment_type" jdbcType="VARCHAR" property="paymentType" />
+    <result column="source" jdbcType="INTEGER" property="source" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="create_time" jdbcType="BIGINT" property="createTime" />
+    <result column="update_time" jdbcType="BIGINT" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, item_id, payer_id, actual_payer_id, seller_id, payment, payment_type, source, 
+    status, url, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_order
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tb_order
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="yuan.paycard.model.Order">
+    insert into tb_order (id, item_id, payer_id, 
+      actual_payer_id, seller_id, payment, 
+      payment_type, source, status, 
+      url, create_time, update_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{itemId,jdbcType=VARCHAR}, #{payerId,jdbcType=BIGINT}, 
+      #{actualPayerId,jdbcType=BIGINT}, #{sellerId,jdbcType=BIGINT}, #{payment,jdbcType=DOUBLE}, 
+      #{paymentType,jdbcType=VARCHAR}, #{source,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{url,jdbcType=VARCHAR}, #{createTime,jdbcType=BIGINT}, #{updateTime,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="yuan.paycard.model.Order" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+    insert into tb_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="itemId != null">
+        item_id,
+      </if>
+      <if test="payerId != null">
+        payer_id,
+      </if>
+      <if test="actualPayerId != null">
+        actual_payer_id,
+      </if>
+      <if test="sellerId != null">
+        seller_id,
+      </if>
+      <if test="payment != null">
+        payment,
+      </if>
+      <if test="paymentType != null">
+        payment_type,
+      </if>
+      <if test="source != null">
+        source,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="itemId != null">
+        #{itemId,jdbcType=VARCHAR},
+      </if>
+      <if test="payerId != null">
+        #{payerId,jdbcType=BIGINT},
+      </if>
+      <if test="actualPayerId != null">
+        #{actualPayerId,jdbcType=BIGINT},
+      </if>
+      <if test="sellerId != null">
+        #{sellerId,jdbcType=BIGINT},
+      </if>
+      <if test="payment != null">
+        #{payment,jdbcType=DOUBLE},
+      </if>
+      <if test="paymentType != null">
+        #{paymentType,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null">
+        #{source,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="yuan.paycard.model.Order">
+    update tb_order
+    <set>
+      <if test="itemId != null">
+        item_id = #{itemId,jdbcType=VARCHAR},
+      </if>
+      <if test="payerId != null">
+        payer_id = #{payerId,jdbcType=BIGINT},
+      </if>
+      <if test="actualPayerId != null">
+        actual_payer_id = #{actualPayerId,jdbcType=BIGINT},
+      </if>
+      <if test="sellerId != null">
+        seller_id = #{sellerId,jdbcType=BIGINT},
+      </if>
+      <if test="payment != null">
+        payment = #{payment,jdbcType=DOUBLE},
+      </if>
+      <if test="paymentType != null">
+        payment_type = #{paymentType,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null">
+        source = #{source,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="yuan.paycard.model.Order">
+    update tb_order
+    set item_id = #{itemId,jdbcType=VARCHAR},
+      payer_id = #{payerId,jdbcType=BIGINT},
+      actual_payer_id = #{actualPayerId,jdbcType=BIGINT},
+      seller_id = #{sellerId,jdbcType=BIGINT},
+      payment = #{payment,jdbcType=DOUBLE},
+      payment_type = #{paymentType,jdbcType=VARCHAR},
+      source = #{source,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      url = #{url,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

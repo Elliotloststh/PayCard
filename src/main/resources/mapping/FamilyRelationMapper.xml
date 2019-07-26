@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="yuan.paycard.dao.FamilyRelationMapper" >
+  <resultMap id="BaseResultMap" type="yuan.paycard.model.FamilyRelation" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="guardian_id" property="guardianId" jdbcType="BIGINT" />
+    <result column="family_id" property="familyId" jdbcType="BIGINT" />
+    <result column="relation_name" property="relationName" jdbcType="VARCHAR" />
+    <result column="month_limit" property="monthLimit" jdbcType="DOUBLE" />
+    <result column="single_limit" property="singleLimit" jdbcType="DOUBLE" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="BIGINT" />
+    <result column="update_time" property="updateTime" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, guardian_id, family_id, relation_name, month_limit, single_limit, status, create_time, 
+    update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from family_relation
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from family_relation
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="yuan.paycard.model.FamilyRelation" >
+    insert into family_relation (id, guardian_id, family_id, 
+      relation_name, month_limit, single_limit, 
+      status, create_time, update_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{guardianId,jdbcType=BIGINT}, #{familyId,jdbcType=BIGINT}, 
+      #{relationName,jdbcType=VARCHAR}, #{monthLimit,jdbcType=DOUBLE}, #{singleLimit,jdbcType=DOUBLE}, 
+      #{status,jdbcType=INTEGER}, #{createTime,jdbcType=BIGINT}, #{updateTime,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="yuan.paycard.model.FamilyRelation" >
+    insert into family_relation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="guardianId != null" >
+        guardian_id,
+      </if>
+      <if test="familyId != null" >
+        family_id,
+      </if>
+      <if test="relationName != null" >
+        relation_name,
+      </if>
+      <if test="monthLimit != null" >
+        month_limit,
+      </if>
+      <if test="singleLimit != null" >
+        single_limit,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="guardianId != null" >
+        #{guardianId,jdbcType=BIGINT},
+      </if>
+      <if test="familyId != null" >
+        #{familyId,jdbcType=BIGINT},
+      </if>
+      <if test="relationName != null" >
+        #{relationName,jdbcType=VARCHAR},
+      </if>
+      <if test="monthLimit != null" >
+        #{monthLimit,jdbcType=DOUBLE},
+      </if>
+      <if test="singleLimit != null" >
+        #{singleLimit,jdbcType=DOUBLE},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="yuan.paycard.model.FamilyRelation" >
+    update family_relation
+    <set >
+      <if test="guardianId != null" >
+        guardian_id = #{guardianId,jdbcType=BIGINT},
+      </if>
+      <if test="familyId != null" >
+        family_id = #{familyId,jdbcType=BIGINT},
+      </if>
+      <if test="relationName != null" >
+        relation_name = #{relationName,jdbcType=VARCHAR},
+      </if>
+      <if test="monthLimit != null" >
+        month_limit = #{monthLimit,jdbcType=DOUBLE},
+      </if>
+      <if test="singleLimit != null" >
+        single_limit = #{singleLimit,jdbcType=DOUBLE},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="yuan.paycard.model.FamilyRelation" >
+    update family_relation
+    set guardian_id = #{guardianId,jdbcType=BIGINT},
+      family_id = #{familyId,jdbcType=BIGINT},
+      relation_name = #{relationName,jdbcType=VARCHAR},
+      month_limit = #{monthLimit,jdbcType=DOUBLE},
+      single_limit = #{singleLimit,jdbcType=DOUBLE},
+      status = #{status,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

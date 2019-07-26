@@ -1,0 +1,40 @@
+server:
+  port: 5418
+  servlet:
+    session:
+      timeout: 7200
+
+spring:
+  datasource:
+    name: bookshop
+    url: jdbc:mysql://101.132.185.90/PayCard
+    username: root
+    password: 19980508yjh
+    # 使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+
+
+mybatis:
+  mapper-locations: classpath:mapping/*.xml
+  type-aliases-package: yuan.paycard.model
+  configuration:
+    map-underscore-to-camel-case: true
+
+swagger:
+  enabled: true
+
+jedis:
+  pool:
+    host: 101.132.185.90
+    port: 6379
+    password: 123456
+    timeout: 10000
+    config:
+      maxTotal: 100
+      maxIdle: 10
+      maxWaitMillis : 100000
+push:
+  server:
+    port: 5419
+
